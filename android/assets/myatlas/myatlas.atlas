@@ -1,0 +1,202 @@
+
+myatlas.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+zeleni_virus
+  rotate: false
+  xy: 2, 2
+  size: 1000, 955
+  orig: 1000, 955
+  offset: 0, 0
+  index: 2
+
+myatlas2.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+vijolicni_virus
+  rotate: false
+  xy: 2, 2
+  size: 1000, 946
+  orig: 1000, 946
+  offset: 0, 0
+  index: 2
+
+myatlas3.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+zeleni_virus
+  rotate: false
+  xy: 2, 2
+  size: 1000, 933
+  orig: 1000, 933
+  offset: 0, 0
+  index: 3
+
+myatlas4.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+zeleni_virus
+  rotate: false
+  xy: 2, 2
+  size: 960, 930
+  orig: 960, 930
+  offset: 0, 0
+  index: 1
+
+myatlas5.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+vijolicni_virus
+  rotate: false
+  xy: 2, 2
+  size: 948, 898
+  orig: 948, 898
+  offset: 0, 0
+  index: 1
+
+myatlas6.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+knjige
+  rotate: false
+  xy: 2, 332
+  size: 541, 662
+  orig: 541, 662
+  offset: 0, 0
+  index: 2
+knjige
+  rotate: false
+  xy: 2, 37
+  size: 342, 293
+  orig: 342, 293
+  offset: 0, 0
+  index: -1
+mikroskop
+  rotate: false
+  xy: 545, 483
+  size: 429, 511
+  orig: 429, 511
+  offset: 0, 0
+  index: -1
+navadna_miza
+  rotate: false
+  xy: 346, 65
+  size: 326, 265
+  orig: 326, 265
+  offset: 0, 0
+  index: -1
+stojalo_z_buckami
+  rotate: false
+  xy: 674, 2
+  size: 335, 479
+  orig: 335, 479
+  offset: 0, 0
+  index: -1
+
+myatlas7.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+advanced_postelja
+  rotate: false
+  xy: 2, 2
+  size: 507, 440
+  orig: 507, 440
+  offset: 0, 0
+  index: -1
+bucka
+  rotate: false
+  xy: 809, 664
+  size: 207, 342
+  orig: 207, 342
+  offset: 0, 0
+  index: -1
+erlenmajerica
+  rotate: false
+  xy: 781, 152
+  size: 236, 290
+  orig: 236, 290
+  offset: 0, 0
+  index: -1
+masina_za_testiranje
+  rotate: false
+  xy: 511, 122
+  size: 268, 320
+  orig: 268, 320
+  offset: 0, 0
+  index: -1
+operacijska_miza
+  rotate: false
+  xy: 2, 444
+  size: 509, 562
+  orig: 509, 562
+  offset: 0, 0
+  index: -1
+stol
+  rotate: false
+  xy: 824, 444
+  size: 149, 218
+  orig: 149, 218
+  offset: 0, 0
+  index: 1
+tablete
+  rotate: false
+  xy: 513, 606
+  size: 294, 400
+  orig: 294, 400
+  offset: 0, 0
+  index: 1
+tablete
+  rotate: false
+  xy: 513, 444
+  size: 309, 160
+  orig: 309, 160
+  offset: 0, 0
+  index: 2
+
+myatlas8.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+masina_ob_postelji
+  rotate: false
+  xy: 546, 702
+  size: 240, 264
+  orig: 240, 264
+  offset: 0, 0
+  index: -1
+priprava
+  rotate: false
+  xy: 2, 472
+  size: 542, 494
+  orig: 542, 494
+  offset: 0, 0
+  index: -1
+stol
+  rotate: false
+  xy: 2, 2
+  size: 170, 220
+  orig: 170, 220
+  offset: 0, 0
+  index: 2
+terilnica
+  rotate: false
+  xy: 2, 224
+  size: 307, 246
+  orig: 307, 246
+  offset: 0, 0
+  index: -1
