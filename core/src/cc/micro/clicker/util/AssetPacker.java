@@ -1,4 +1,4 @@
-package cc.micro.clicker;
+package cc.micro.clicker.util;
 
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
@@ -12,12 +12,12 @@ public class AssetPacker {
         TexturePacker.Settings settings = new TexturePacker.Settings();
         settings.debug = DRAW_DEBUG_OUTLINE;
 
-        if(!TexturePacker.processIfModified(
+        TexturePacker.processIfModified(
                 settings,
                 ASSETS_PATH + "/" + RAW_ASSETS_PATH,
                 ASSETS_PATH + "/" + ATLASNAME,
                 ATLASNAME
-        )) {}
+        );
         String file=ASSETS_PATH + ATLASNAME+"/"+ATLASNAME+".atlas";
     }
 }

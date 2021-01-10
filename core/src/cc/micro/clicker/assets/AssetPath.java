@@ -1,7 +1,15 @@
 package cc.micro.clicker.assets;
 
 public class AssetPath {
-    public static final String MY_ATLAS = "myatlas/myatlas.atlas";
+    /* TODO:
+        - Add +, settings icons
+     */
+    public static final String MY_ATLAS = "atlas/myatlas/myatlas.atlas";
+
+    public static final String SKIN = "skins/default/skin/uiskin.json";
+    public static final String SKIN_ATLAS = "skins/default/skin/uiskin.atlas";
+
+    public static final String BACKGROUND = "images/covid19-texture.jpg";
 
     public static final String SOUND_COUGH_1 = "sounds/cough_1.wav";
     public static final String SOUND_COUGH_2 = "sounds/cough_2.wav";
@@ -22,11 +30,9 @@ public class AssetPath {
 
     public static final String SOUND_BOOK_FLIPPING = "sounds/book_flipping.wav";
 
-    public static final String SOUND_EPRUVETA_1 = "sounds/epruveta_1.wav";
-    public static final String SOUND_EPRUVETA_2 = "sounds/epruveta_2.wav";
-    public static final String SOUND_EPRUVETA_3 = "sounds/epruveta_3.wav";
+    public static final String SOUND_TEST_TUBE_1 = "sounds/epruveta_1.wav";
+    public static final String SOUND_TEST_TUBE_2 = "sounds/epruveta_2.wav";
+    public static final String SOUND_TEST_TUBE_3 = "sounds/epruveta_3.wav";
 
-    public static final String SOUND_TABLETE_1= "sounds/tablete_1.wav";
-
-    private AssetPath() {}
+    public static final String SOUND_TABLETS_1 = "sounds/tablete_1.wav";
 }
