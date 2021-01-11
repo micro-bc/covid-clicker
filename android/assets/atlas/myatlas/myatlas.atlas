@@ -4,7 +4,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-zeleni_virus
+zeleni_virus1
   rotate: false
   xy: 2, 2
   size: 1000, 955
@@ -17,7 +17,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-vijolicni_virus
+vijolicni_virus1
   rotate: false
   xy: 2, 2
   size: 1000, 946
@@ -30,7 +30,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-zeleni_virus
+zeleni_virus2
   rotate: false
   xy: 2, 2
   size: 1000, 933
@@ -43,7 +43,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-zeleni_virus
+zeleni_virus3
   rotate: false
   xy: 2, 2
   size: 960, 930
@@ -56,7 +56,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-vijolicni_virus
+vijolicni_virus2
   rotate: false
   xy: 2, 2
   size: 948, 898
@@ -145,21 +145,21 @@ operacijska_miza
   orig: 509, 562
   offset: 0, 0
   index: -1
-stol
+stol1
   rotate: false
   xy: 824, 444
   size: 149, 218
   orig: 149, 218
   offset: 0, 0
   index: 1
-tablete
+tablete1
   rotate: false
   xy: 513, 606
   size: 294, 400
   orig: 294, 400
   offset: 0, 0
   index: 1
-tablete
+tablete2
   rotate: false
   xy: 513, 444
   size: 309, 160
@@ -186,7 +186,7 @@ priprava
   orig: 542, 494
   offset: 0, 0
   index: -1
-stol
+stol2
   rotate: false
   xy: 2, 2
   size: 170, 220
