@@ -86,4 +86,7 @@ public class MainMenu extends AbstractActorGroup {
             }
         });
     }
+
+    @Override
+    public void update(float dt) { }
 }

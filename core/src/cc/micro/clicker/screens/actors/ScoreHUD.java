@@ -22,8 +22,8 @@ public class ScoreHUD extends AbstractActorGroup {
     @Override
     protected void create() {
         final Skin skin = ScreenManager.game.getAssetManager().get(AssetDescriptors.SKIN);
-        clicksLabel = new Label(String.valueOf(ClickerGameManager.INSTANCE.getClicks()), skin);
-        cpsLabel = new Label(ClickerGameManager.INSTANCE.getClicks() + " cps", skin);
+        clicksLabel = new Label("", skin);
+        cpsLabel = new Label("", skin);
     }
 
     @Override
@@ -39,6 +39,12 @@ public class ScoreHUD extends AbstractActorGroup {
                 .expandX()
                 .height(ClickerGameConfig.HEIGHT_HUD_ITEM)
                 .row();
+    }
+
+    @Override
+    public void update(float dt) {
+        clicksLabel.setText(String.valueOf(ClickerGameManager.INSTANCE.getClicks()));
+        cpsLabel.setText(ClickerGameManager.INSTANCE.getCps() + "cps");
     }
 
     @Override

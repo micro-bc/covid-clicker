@@ -2,7 +2,6 @@ package cc.micro.clicker.screens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import cc.micro.clicker.ClickerGameConfig;
 import cc.micro.clicker.assets.AssetDescriptors;
@@ -10,30 +9,28 @@ import cc.micro.clicker.screens.actors.Clicker;
 import cc.micro.clicker.screens.actors.MainMenu;
 import cc.micro.clicker.screens.actors.ScoreHUD;
 
-import static cc.micro.clicker.screens.ScreenManager.*;
+import static cc.micro.clicker.screens.ScreenManager.game;
 
 /* TODO
-        - Update hud
-        - Add menu item click actions
         - Virus animation
-        - Virus click action
-        - Particles (Optional)
+        - Particles [ Optional ]
  */
 
 /**
  * Game screen
  */
-public class ScreenMain extends AbstractScreen<Table> {
-    public ScreenMain() {
-        super(new Table());
-    }
+public class ScreenMain extends AbstractScreen {
+
+    private ScoreHUD hud;
+    private Clicker clicker;
+    private MainMenu menu;
 
     @Override
     protected void setUp() {
         /* Add actors */
-        new ScoreHUD(layout);
-        new Clicker(layout);
-        new MainMenu(layout);
+        hud = new ScoreHUD(container);
+        clicker = new Clicker(container);
+        menu = new MainMenu(container);
 
         super.drawTransparentOverlay(BLACK_OVERLAY);
 
@@ -42,6 +39,11 @@ public class ScreenMain extends AbstractScreen<Table> {
         final Image background = new Image(backgroundTexture);
         background.setHeight(ClickerGameConfig.HEIGHT);
         stage.addActor(background);
-        stage.addActor(layout);
+        stage.addActor(container);
+    }
+
+    @Override
+    protected void update(float dt) {
+        hud.update(dt);
     }
 }

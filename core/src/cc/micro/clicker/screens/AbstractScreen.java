@@ -23,36 +23,34 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Stack;
 
 import cc.micro.clicker.ClickerGameConfig;
+import cc.micro.clicker.ClickerGameManager;
 import cc.micro.clicker.assets.AssetDescriptors;
 
 import static cc.micro.clicker.screens.ScreenManager.camera;
 import static cc.micro.clicker.screens.ScreenManager.game;
 
-public abstract class AbstractScreen<T> extends ScreenAdapter {
+public abstract class AbstractScreen extends ScreenAdapter {
     @NotNull
-    protected static final Color BLACK_OVERLAY = new Color().set(0, 0, 0, 0.3f);
+    protected static final Color BLACK_OVERLAY = new Color().set(0, 0, 0, 0.7f);
 
     @NotNull
     protected final Stage stage = new Stage(new FitViewport(camera.viewportWidth, camera.viewportHeight, camera), ScreenManager.game.getBatch());
 
     @NotNull
-    protected final T layout;
+    protected final Table container = new Table();
 
     @NotNull
     protected final Skin skin;
 
-    public AbstractScreen(@NotNull final T layout) {
-        this.layout = layout;
+    public AbstractScreen() {
         this.skin = game.getAssetManager().get(AssetDescriptors.SKIN);
         skin.setScale(ClickerGameConfig.SCALE);
         skin.getFont("default-font").getData().setScale(ClickerGameConfig.SCALE * 1.3f);
         skin.addRegions(game.getAssetManager().get(AssetDescriptors.SKIN_ATLAS));
 
-        if (layout instanceof Table) {
-            ((Table) layout).setSkin(skin);
-            ((Table) layout).setFillParent(true);
-            ((Table) layout).setDebug(ClickerGameConfig.DEBUG != Logger.NONE);
-        }
+        container.setSkin(skin);
+        container.setFillParent(true);
+        container.setDebug(ClickerGameConfig.DEBUG != Logger.NONE);
 
         stage.addListener(new InputListener() {
             @Override
@@ -60,7 +58,6 @@ public abstract class AbstractScreen<T> extends ScreenAdapter {
                 switch (keycode) {
                     case Input.Keys.BACK:
                         if (ScreenManager.screenStack.size() < 2) return true;
-                        final Stack<Screen> screenStack = ScreenManager.screenStack;
                         ScreenManager.screenStack.pop();
                         game.setScreen(ScreenManager.screenStack.pop());
                         return true;
@@ -75,6 +72,8 @@ public abstract class AbstractScreen<T> extends ScreenAdapter {
 
     protected abstract void setUp();
 
+    protected abstract void update(final float dt);
+
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
@@ -84,6 +83,8 @@ public abstract class AbstractScreen<T> extends ScreenAdapter {
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        update(delta);
+        ClickerGameManager.INSTANCE.update(delta);
         stage.act(delta);
         stage.draw();
     }
@@ -99,11 +100,10 @@ public abstract class AbstractScreen<T> extends ScreenAdapter {
     }
 
     public void drawTransparentOverlay(@NotNull final Color color) {
-        if (!(layout instanceof Table)) return;
-        final Pixmap bgPixmap = new Pixmap(1, 1, Pixmap.Format.Alpha);
-        bgPixmap.setColor(color.r, color.g, color.b, color.a);
-        bgPixmap.fill();
-        final TextureRegionDrawable bg = new TextureRegionDrawable(new TextureRegion(new Texture(bgPixmap)));
-        ((Table) layout).setBackground(bg);
+        final Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.Alpha);
+        pixmap.setColor(color.r, color.g, color.b, color.a);
+        pixmap.fill();
+        final TextureRegionDrawable bg = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
+        container.setBackground(bg);
     }
 }

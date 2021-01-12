@@ -21,4 +21,6 @@ public abstract class AbstractActorGroup {
     protected abstract void setLayout();
 
     protected abstract void setListeners();
+
+    public abstract void update(final float dt);
 }

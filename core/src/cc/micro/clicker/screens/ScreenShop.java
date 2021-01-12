@@ -1,16 +1,16 @@
 package cc.micro.clicker.screens;
 
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-
 /**
  * List of available items
  */
-public class ScreenShop extends AbstractScreen<ScrollPane> {
-    public ScreenShop() {
-        super(new ScrollPane(null));
-    }
+public class ScreenShop extends AbstractScreen {
 
     @Override
     protected void setUp() {
+    }
+
+    @Override
+    protected void update(float dt) {
+
     }
 }

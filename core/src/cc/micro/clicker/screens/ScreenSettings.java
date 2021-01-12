@@ -1,16 +1,16 @@
 package cc.micro.clicker.screens;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-
 /**
  * Settings screen
  */
-public class ScreenSettings extends AbstractScreen<Table> {
-    public ScreenSettings() {
-        super(new Table());
-    }
+public class ScreenSettings extends AbstractScreen {
 
     @Override
     protected void setUp() {
+    }
+
+    @Override
+    protected void update(float dt) {
+
     }
 }

@@ -2,6 +2,8 @@ package cc.micro.clicker.screens.actors;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import org.jetbrains.annotations.NotNull;
 
 import cc.micro.clicker.ClickerGameConfig;
+import cc.micro.clicker.ClickerGameManager;
 import cc.micro.clicker.assets.AssetDescriptors;
 import cc.micro.clicker.assets.RegionNames;
 
@@ -46,5 +49,16 @@ public class Clicker extends AbstractActorGroup {
 
     @Override
     protected void setListeners() {
+        virusButton.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                ClickerGameManager.INSTANCE.click(1);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void update(float dt) {
     }
 }
