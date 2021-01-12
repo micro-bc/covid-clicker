@@ -2,7 +2,6 @@ package cc.micro.clicker.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -19,8 +19,6 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Stack;
 
 import cc.micro.clicker.ClickerGameConfig;
 import cc.micro.clicker.ClickerGameManager;
@@ -30,8 +28,9 @@ import static cc.micro.clicker.screens.ScreenManager.camera;
 import static cc.micro.clicker.screens.ScreenManager.game;
 
 public abstract class AbstractScreen extends ScreenAdapter {
+
     @NotNull
-    protected static final Color BLACK_OVERLAY = new Color().set(0, 0, 0, 0.7f);
+    protected static final Color OVERLAY = new Color().set(0, 0, 0, 0.7f);
 
     @NotNull
     protected final Stage stage = new Stage(new FitViewport(camera.viewportWidth, camera.viewportHeight, camera), ScreenManager.game.getBatch());
@@ -42,8 +41,18 @@ public abstract class AbstractScreen extends ScreenAdapter {
     @NotNull
     protected final Skin skin;
 
+    protected boolean setDefaultBackground = true;
+
     public AbstractScreen() {
         this.skin = game.getAssetManager().get(AssetDescriptors.SKIN);
+        init();
+    }
+
+    protected abstract void setUp();
+
+    protected abstract void update(final float dt);
+
+    private void init() {
         skin.setScale(ClickerGameConfig.SCALE);
         skin.getFont("default-font").getData().setScale(ClickerGameConfig.SCALE * 1.3f);
         skin.addRegions(game.getAssetManager().get(AssetDescriptors.SKIN_ATLAS));
@@ -52,6 +61,13 @@ public abstract class AbstractScreen extends ScreenAdapter {
         container.setFillParent(true);
         container.setDebug(ClickerGameConfig.DEBUG != Logger.NONE);
 
+        setUp();
+        setGenericListeners();
+        if(setDefaultBackground) drawBackground();
+        stage.addActor(container);
+    }
+
+    private void setGenericListeners() {
         stage.addListener(new InputListener() {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
@@ -66,13 +82,25 @@ public abstract class AbstractScreen extends ScreenAdapter {
                 }
             }
         });
-
-        setUp();
     }
 
-    protected abstract void setUp();
+    private void drawTransparentOverlay() {
+        final Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.Alpha);
+        pixmap.setColor(AbstractScreen.OVERLAY.r, AbstractScreen.OVERLAY.g, AbstractScreen.OVERLAY.b, AbstractScreen.OVERLAY.a);
+        pixmap.fill();
+        final TextureRegionDrawable bg = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
+        container.setBackground(bg);
+    }
 
-    protected abstract void update(final float dt);
+    private void drawBackground() {
+        drawTransparentOverlay();
+
+        final Texture backgroundTexture = game.getAssetManager().get(AssetDescriptors.BACKGROUND);
+        backgroundTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        final Image background = new Image(backgroundTexture);
+        background.setHeight(ClickerGameConfig.HEIGHT);
+        stage.addActor(background);
+    }
 
     @Override
     public void show() {
@@ -97,13 +125,5 @@ public abstract class AbstractScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
-    }
-
-    public void drawTransparentOverlay(@NotNull final Color color) {
-        final Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.Alpha);
-        pixmap.setColor(color.r, color.g, color.b, color.a);
-        pixmap.fill();
-        final TextureRegionDrawable bg = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
-        container.setBackground(bg);
     }
 }

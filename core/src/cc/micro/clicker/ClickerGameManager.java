@@ -6,10 +6,11 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-import cc.micro.clicker.components.AutoClickerItem;
+import cc.micro.clicker.util.AutoClicker;
 
 /* TODO: save/load game state
     - CPS
@@ -24,8 +25,8 @@ public class ClickerGameManager {
     public final String userID;
 
     private long LAST_UPDATE = TimeUtils.nanoTime();
-    private int cps;
-    private int clicks;
+    private BigInteger cps;
+    private BigInteger clicks;
     private final Map<String, Integer> items = new HashMap<>();
 
     private ClickerGameManager() {
@@ -34,23 +35,23 @@ public class ClickerGameManager {
         reset();
     }
 
-    public int getCps() {
+    public BigInteger getCps() {
         return cps;
     }
 
-    public int getClicks() {
+    public BigInteger getClicks() {
         return clicks;
     }
 
-    public void click(final int clicks) {
-        this.clicks += clicks;
+    public void click(final BigInteger clicks) {
+        this.clicks = this.clicks.add(clicks);
     }
 
     public void update(final float dt) {
         final long seconds = TimeUtils.timeSinceNanos(LAST_UPDATE) / 1000000000;
         if (seconds >= 1) {
             if(ClickerGameConfig.BACKGROUND_FARMING) {
-                INSTANCE.click((int) (cps * seconds)); // Background hack
+                INSTANCE.click(cps.multiply(BigInteger.valueOf(seconds))); // Background hack
             } else {
                 INSTANCE.click(cps); // App must be opened
             }
@@ -59,24 +60,24 @@ public class ClickerGameManager {
     }
 
     private void reset() {
-        this.cps = 1;
-        this.clicks = 0;
+        this.cps = BigInteger.valueOf(123456789);
+        this.clicks = BigInteger.valueOf(0);
         for (final String key : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
             this.items.put(key, 0);
         }
     }
 
     public boolean buyItem(@NotNull final String itemId) {
-        final AutoClickerItem item = ClickerGameConfig.AUTO_CLICKERS.get(itemId);
-        final int price = item.getPrice();
+        final AutoClicker item = ClickerGameConfig.AUTO_CLICKERS.get(itemId);
+        final BigInteger price = item.getPrice();
 
-        if(this.clicks < price || this.items.get(itemId) == null) {
+        if(this.clicks.compareTo(price) < 0 || (this.items.get(itemId) == null)) {
             return false;
         }
 
-        this.clicks -= price;
+        this.clicks = this.clicks.subtract(price);
         items.put(itemId, items.get(itemId) + 1);
-        this.cps += item.getCps();
+        this.cps = this.cps.add(item.getCps());
 
         return true;
     }

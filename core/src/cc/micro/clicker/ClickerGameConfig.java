@@ -3,10 +3,12 @@ package cc.micro.clicker;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Logger;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-import cc.micro.clicker.components.AutoClickerItem;
+import cc.micro.clicker.assets.RegionNames;
+import cc.micro.clicker.util.AutoClicker;
 
 public final class ClickerGameConfig {
     public static final int DEBUG = Logger.DEBUG;
@@ -24,19 +26,14 @@ public final class ClickerGameConfig {
     public static final float HEIGHT_MENU_ITEM = HEIGHT / 12f;
     public static final float PAD_MENU_ITEM = WIDTH / 50f;
     public static final float VIRUS_SCALE = 0.8f;
+    public static final float SCROLL_PANE_ROW_HEIGHT = HEIGHT / 10f;
+
 
     /* AutoClickers */
-    public static final Map<String, AutoClickerItem> AUTO_CLICKERS = new HashMap<String, AutoClickerItem>() {
+    public static final Map<String, AutoClicker> AUTO_CLICKERS = new HashMap<String, AutoClicker>() {
         {
-            put("Bed",        new AutoClickerItem(0, 0, null));
-            put("Chemist",    new AutoClickerItem(0, 0, null));
-            put("Doctor",     new AutoClickerItem(0, 0, null));
-            put("Drugs",      new AutoClickerItem(0, 0, null));
-            put("Knowledge",  new AutoClickerItem(0, 0, null));
-            put("Microscope", new AutoClickerItem(0, 0, null));
-            put("Syrup",      new AutoClickerItem(0, 0, null));
-            put("SuperBed",   new AutoClickerItem(0, 0, null));
-            put("Respirator", new AutoClickerItem(0, 0, null));
+            put(RegionNames.ADVANCED_POSTELJA, new AutoClicker(BigInteger.valueOf(100), BigInteger.valueOf(20)));
+            put(RegionNames.BUCKA, new AutoClicker(BigInteger.valueOf(100), BigInteger.valueOf(20)));
         }
     };
 }
