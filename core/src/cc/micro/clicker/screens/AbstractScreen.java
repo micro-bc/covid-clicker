@@ -78,6 +78,7 @@ public abstract class AbstractScreen<T> extends ScreenAdapter {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
+        Gdx.input.setCatchKey(Input.Keys.BACK, true);
     }
 
     @Override
