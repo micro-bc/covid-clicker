@@ -8,7 +8,7 @@
 * [ ] Finish items screen
 * [ ] Shop screen + buy item logic (x10, x100, x1000 buttons)
 * [ ] Settings / About screen: general stats (total clicks, time spent)
-* [ ] Read/Write game state (clicks, cps, items, stats)
+* [x] Read/Write game state (clicks, cps, items, stats)
 
 * [ ] Add icons: settings/about, plus/store, list/(existing books) 
 * [ ] Play sounds (buy item, manual click, new max)

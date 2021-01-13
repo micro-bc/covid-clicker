@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.badlogic.gdx.utils.TimeUtils;
+
 import cc.micro.clicker.ClickerGame;
 
 public class AndroidLauncher extends AndroidApplication {
@@ -21,6 +23,7 @@ public class AndroidLauncher extends AndroidApplication {
     @Override
     protected void onStop() {
         super.onStop();
+        ClickerGameManager.INSTANCE.updateTotalTime();
         ClickerGameManager.INSTANCE.saveState();
     }
 }

@@ -18,12 +18,18 @@ public class ClickerGameManager {
     private static final String CPS_ID = "CPS";
     private static final String CLICKS_ID = "CLICKS";
     private static final String USER_ID = "USER_ID";
+    private static final String TOTAL_TIME_ID = "TOTAL_TIME";
+    private static final String TOTAL_CLICKS_ID = "TOTAL_CLICKS";
     private final Preferences PREFERENCES = Gdx.app.getPreferences(ClickerGame.class.getSimpleName());
     private final Map<String, Integer> items = new HashMap<>();
     private UUID userID;
     private long LAST_UPDATE = TimeUtils.nanoTime();
     private BigInteger cps = BigInteger.valueOf(0);
     private BigInteger clicks = BigInteger.valueOf(0);
+    private BigInteger totalClicks = BigInteger.valueOf(0);
+    private BigInteger totalTime = BigInteger.valueOf(0); // milliseconds
+    private long instanceStartTime = TimeUtils.millis();
+
 
     private ClickerGameManager() {
         loadState();
@@ -39,8 +45,14 @@ public class ClickerGameManager {
         return clicks;
     }
 
+    public void updateTotalTime() {
+        totalTime = totalTime.add(BigInteger.valueOf(TimeUtils.timeSinceMillis(instanceStartTime)));
+        instanceStartTime = TimeUtils.millis();
+    }
+
     public void click(final BigInteger clicks) {
         this.clicks = this.clicks.add(clicks);
+        totalClicks = totalClicks.add(clicks);
     }
 
     public boolean buyItem(@NotNull final String itemId) {
@@ -59,12 +71,14 @@ public class ClickerGameManager {
     }
 
     private void reset() {
+        userID = UUID.randomUUID();
         cps = BigInteger.valueOf(0);
         clicks = BigInteger.valueOf(0);
+        totalClicks = BigInteger.valueOf(0);
+        totalTime = BigInteger.valueOf(0);
         for (final String key : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
             items.put(key, 0);
         }
-        // TODO: Stats
     }
 
     public void update(final float dt) {
@@ -83,35 +97,31 @@ public class ClickerGameManager {
         PREFERENCES.putString(USER_ID, userID.toString());
         PREFERENCES.putString(CPS_ID, cps.toString());
         PREFERENCES.putString(CLICKS_ID, clicks.toString());
+        PREFERENCES.putString(TOTAL_CLICKS_ID, totalClicks.toString());
+        PREFERENCES.putString(TOTAL_TIME_ID, String.valueOf(totalTime));
         for (final String item : items.keySet()) {
             PREFERENCES.putString(item, String.valueOf(items.get(item)));
         }
-        // TODO: Stats
 
         PREFERENCES.flush();
     }
 
     private void loadState() {
-        if (PREFERENCES.contains(USER_ID)) {
+        try {
             userID = UUID.fromString(PREFERENCES.getString(USER_ID));
-            if (PREFERENCES.contains(CPS_ID)) {
-                cps = new BigInteger(PREFERENCES.getString(CPS_ID));
-            }
-            if (PREFERENCES.contains(CLICKS_ID)) {
-                clicks = new BigInteger(PREFERENCES.getString(CLICKS_ID));
-            }
-
+            cps = new BigInteger(PREFERENCES.getString(CPS_ID));
+            clicks = new BigInteger(PREFERENCES.getString(CLICKS_ID));
+            totalClicks = new BigInteger(PREFERENCES.getString(TOTAL_CLICKS_ID));
+            totalTime = new BigInteger(PREFERENCES.getString(TOTAL_TIME_ID));
             for (final String clicker : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
                 if (PREFERENCES.contains(clicker)) {
                     items.put(clicker, Integer.valueOf(PREFERENCES.getString(clicker)));
                 } else {
-                    items.put(clicker, 0);
+                    items.put(clicker, 0); // Enable updates with new clickers without deleting game state
                 }
             }
-        } else {
-            userID = UUID.randomUUID();
+        } catch (final Exception e) {
             reset();
         }
-        // TODO: Stats
     }
 }
