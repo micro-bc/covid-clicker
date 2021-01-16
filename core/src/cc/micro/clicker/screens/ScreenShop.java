@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -73,20 +74,58 @@ public class ScreenShop extends AbstractScreen {
             oneBtn.addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    ClickerGameManager.INSTANCE.buyItem(regionName, 1);
+                    if (ClickerGameManager.INSTANCE.buyItem(regionName, 1)) {
+                        showDialog();
+                    }
                     return true;
                 }
             });
             tenBtn.addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    ClickerGameManager.INSTANCE.buyItem(regionName, 10);
+                    if (ClickerGameManager.INSTANCE.buyItem(regionName, 10)) {
+                        showDialog();
+                    }
                     return true;
                 }
             });
         }
-
         setLayout();
+    }
+
+    private void showDialog() {
+        final Dialog dialog = new Dialog("", skin) {
+            @Override
+            public float getPrefWidth() {
+                return ClickerGameConfig.WIDTH * 0.8f;
+            }
+
+            @Override
+            public float getPrefHeight() {
+                return ClickerGameConfig.WIDTH * 0.5f;
+            }
+        };
+
+        final Label message = new Label("Insufficient funds!", skin);
+        final TextButton dismissBtn = new TextButton("Dismiss", skin);
+        dismissBtn.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                dialog.hide();
+//                dialog.cancel();
+//                dialog.remove();
+                return true;
+            }
+        });
+
+        dialog.getContentTable().add(message).padTop(40f);
+        dialog.getButtonTable().add(dismissBtn).width(300f).height(150f).center().padBottom(80f);
+        dialog.setModal(true);
+        dialog.setMovable(false);
+        dialog.setResizable(false);
+        dialog.show(stage);
+
+        stage.addActor(dialog);
     }
 
     private void setPaneStyle() {

@@ -8,7 +8,7 @@
 * [x] Finish items screen
 * [x] Shop screen + buy item logic (x1, x10 buy button)
 * [x] Read/Write game state (clicks, cps, items, stats)
-* [ ] Not enough funds popup
+* [x] Not enough funds popup
 * [ ] Settings / About screen: general stats (total clicks, time spent)
 * [ ] Add icon labels (Item List, Shop, Info/Settings)
 * [ ] Create prettyNames Map (RegionName -> prettyName)
