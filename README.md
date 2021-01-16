@@ -5,10 +5,13 @@
 * [SoundSnap](www.soundsnap.com)
 
 ##### TODO
-* [ ] Finish items screen
-* [ ] Shop screen + buy item logic (x10, x100, x1000 buttons)
-* [ ] Settings / About screen: general stats (total clicks, time spent)
+* [x] Finish items screen
+* [x] Shop screen + buy item logic (x1, x10 buy button)
 * [x] Read/Write game state (clicks, cps, items, stats)
+* [ ] Not enough funds popup
+* [ ] Settings / About screen: general stats (total clicks, time spent)
+* [ ] Add icon labels (Item List, Shop, Info/Settings)
+* [ ] Create prettyNames Map (RegionName -> prettyName)
 
 * [ ] Add icons: settings/about, plus/store, list/(existing books) 
 * [ ] Play sounds (buy item, manual click, new max)
@@ -16,3 +19,5 @@
 * [ ] Animations and particles (optional)
 * [ ] Buy button greyed out if insufficient funds (optional)
 * [ ] Consistent naming (si -> en) (optional)
+
+* [ ] Presentation (w/ Trailer clip)

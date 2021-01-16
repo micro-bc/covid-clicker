@@ -31,9 +31,7 @@ public final class ScreenManager {
 
     @NotNull
     public static final Map<String, ScreenAdapter> screens = new HashMap<>();
-
-    public static ClickerGame game;
-
     @NotNull
     public static final Stack<Screen> screenStack = new Stack<>();
+    public static ClickerGame game;
 }

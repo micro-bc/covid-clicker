@@ -45,6 +45,11 @@ public class ClickerGameManager {
         return clicks;
     }
 
+    public int getItemCount(@NotNull final String id) {
+        return items.get(id);
+    }
+
+
     public void updateTotalTime() {
         totalTime = totalTime.add(BigInteger.valueOf(TimeUtils.timeSinceMillis(instanceStartTime)));
         instanceStartTime = TimeUtils.millis();
@@ -55,19 +60,18 @@ public class ClickerGameManager {
         totalClicks = totalClicks.add(clicks);
     }
 
-    public boolean buyItem(@NotNull final String itemId) {
+    public void buyItem(@NotNull final String itemId, final int count) {
         final AutoClicker item = ClickerGameConfig.AUTO_CLICKERS.get(itemId);
         final BigInteger price = item.getPrice();
 
-        if (this.clicks.compareTo(price) < 0 || (this.items.get(itemId) == null)) {
-            return false;
+        if (this.clicks.compareTo(price.multiply(BigInteger.valueOf(count))) < 0 || (this.items.get(itemId) == null)) {
+            // TODO: popup
+            return;
         }
 
-        this.clicks = this.clicks.subtract(price);
-        items.put(itemId, items.get(itemId) + 1);
-        this.cps = this.cps.add(item.getCps());
-
-        return true;
+        this.clicks = this.clicks.subtract(price.multiply(BigInteger.valueOf(count)));
+        items.put(itemId, items.get(itemId) + count);
+        this.cps = this.cps.add(item.getCps().multiply(BigInteger.valueOf(count)));
     }
 
     private void reset() {

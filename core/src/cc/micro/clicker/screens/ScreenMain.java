@@ -128,8 +128,8 @@ public class ScreenMain extends AbstractScreen {
 
     @Override
     protected void update(float dt) {
-        clicksLabel.setText(_bi2shortStr(ClickerGameManager.INSTANCE.getClicks()));
-        cpsLabel.setText(_bi2shortStr(ClickerGameManager.INSTANCE.getCps()) + " cps");
+        clicksLabel.setText(_bi2shortStr(ClickerGameManager.INSTANCE.getClicks()) + ClickerGameConfig.CURRENCY_SYMBOL);
+        cpsLabel.setText(_bi2shortStr(ClickerGameManager.INSTANCE.getCps()) + "cps");
         // TODO: Virus animation [ OPTIONAL ]
         // TODO: Item icon particles [ OPTIONAL ]
     }

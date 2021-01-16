@@ -15,17 +15,17 @@ public class Tools {
 
         final Map<Long, String> suffixMap = new HashMap<Long, String>() {
             {
-                put(1_000_000_000_000_000_000L, "quintillion");
-                put(1_000_000_000_000_000L, "quadrillion");
-                put(1_000_000_000_000L, "trillion");
-                put(1_000_000_000L, "billion");
-                put(1_000_000L, "million");
+                put(1_000_000_000_000_000_000L, "E");
+                put(1_000_000_000_000_000L, "P");
+                put(1_000_000_000_000L, "T");
+                put(1_000_000_000L, "G");
+                put(1_000_000L, "M");
             }
         };
 
         for (final Long value : suffixMap.keySet()) {
             if(number.compareTo(BigInteger.valueOf(value)) > 0) {
-                final DecimalFormat df = new DecimalFormat("#.####");
+                final DecimalFormat df = new DecimalFormat("#.###");
                 return df.format(number.doubleValue() / value.doubleValue())
                         + " "
                         + suffixMap.get(value);

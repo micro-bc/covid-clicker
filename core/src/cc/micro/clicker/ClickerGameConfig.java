@@ -13,6 +13,9 @@ import cc.micro.clicker.util.AutoClicker;
 public final class ClickerGameConfig {
     public static final int DEBUG = Logger.DEBUG;
 
+    /* Style */
+    public static final String CURRENCY_SYMBOL = "c"; // ₡ font has to support it
+
     /* Behaviour */
     public static final boolean BACKGROUND_FARMING = true;
 
@@ -28,11 +31,10 @@ public final class ClickerGameConfig {
     public static final float VIRUS_SCALE = 0.8f;
     public static final float SCROLL_PANE_ROW_HEIGHT = HEIGHT / 10f;
 
-
     /* AutoClickers */
     public static final Map<String, AutoClicker> AUTO_CLICKERS = new HashMap<String, AutoClicker>() {
         {
-            put(RegionNames.ADVANCED_POSTELJA, new AutoClicker(BigInteger.valueOf(100), BigInteger.valueOf(20)));
+            put(RegionNames.ADVANCED_POSTELJA, new AutoClicker(BigInteger.valueOf(1), BigInteger.valueOf(10000000)));
             put(RegionNames.BUCKA, new AutoClicker(BigInteger.valueOf(100), BigInteger.valueOf(20)));
         }
     };
