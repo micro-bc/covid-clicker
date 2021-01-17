@@ -175,14 +175,14 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-knjige
+knjige_dva
   rotate: false
   xy: 2, 332
   size: 541, 662
   orig: 541, 662
   offset: 0, 0
-  index: 2
-knjige
+  index: -1
+knjige_ena
   rotate: false
   xy: 2, 37
   size: 342, 293
