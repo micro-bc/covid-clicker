@@ -28,16 +28,17 @@ import static cc.micro.clicker.util.Tools._bi2shortStr;
 public class ScreenMain extends AbstractScreen {
     private static final float MAX_CLICKER_HEIGHT = ClickerGameConfig.HEIGHT
             - 2 * ClickerGameConfig.HEIGHT_HUD_ITEM
-            - ClickerGameConfig.HEIGHT_MENU_ITEM
-            - 2 * ClickerGameConfig.PAD_MENU_ITEM;
-    private static final float MENU_ITEM_WIDTH = ClickerGameConfig.WIDTH / 3f
-            - 2 * ClickerGameConfig.PAD_MENU_ITEM - 2;
+            - ClickerGameConfig.HEIGHT_MENU_ITEM;
+    private static final float MENU_ITEM_WIDTH = ClickerGameConfig.WIDTH / 3f;
 
     private Label clicksLabel;
     private Label cpsLabel;
 
     private ImageButton clickerButton;
 
+    private Label shopLabel;
+    private Label itemsLabel;
+    private Label settingsLabel;
     private ImageButton itemsButton;
     private ImageButton shopButton;
     private ImageButton settingsButton;
@@ -56,6 +57,9 @@ public class ScreenMain extends AbstractScreen {
         itemsButton = new ImageButton(new SpriteDrawable(new Sprite(books)));
         shopButton = new ImageButton(new SpriteDrawable(new Sprite(plus)));
         settingsButton = new ImageButton(new SpriteDrawable(new Sprite(settings)));
+        itemsLabel = new Label("Items", skin);
+        shopLabel = new Label("Shop", skin);
+        settingsLabel = new Label("Settings", skin);
 
         addListeners();
         setLayout();
@@ -81,18 +85,28 @@ public class ScreenMain extends AbstractScreen {
         container.add(itemsButton)
                 .width(MENU_ITEM_WIDTH)
                 .height(ClickerGameConfig.HEIGHT_MENU_ITEM)
-                .fill()
-                .pad(ClickerGameConfig.PAD_MENU_ITEM);
+                .fill();
         container.add(shopButton)
                 .width(MENU_ITEM_WIDTH)
                 .height(ClickerGameConfig.HEIGHT_MENU_ITEM)
-                .fill()
-                .pad(ClickerGameConfig.PAD_MENU_ITEM);
+                .fill();
         container.add(settingsButton)
                 .width(MENU_ITEM_WIDTH)
                 .height(ClickerGameConfig.HEIGHT_MENU_ITEM)
                 .fill()
-                .pad(ClickerGameConfig.PAD_MENU_ITEM);
+                .row();
+        container.add(itemsLabel)
+                .center()
+                .expandX()
+                .height(ClickerGameConfig.HEIGHT_MENU_ITEM * 0.5f);
+        container.add(shopLabel)
+                .expandX()
+                .center()
+                .height(ClickerGameConfig.HEIGHT_MENU_ITEM * 0.5f);
+        container.add(settingsLabel)
+                .center()
+                .expandX()
+                .height(ClickerGameConfig.HEIGHT_MENU_ITEM * 0.5f);
     }
 
     private void addListeners() {

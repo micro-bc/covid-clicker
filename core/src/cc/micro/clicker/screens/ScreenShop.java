@@ -106,14 +106,14 @@ public class ScreenShop extends AbstractScreen {
             }
         };
 
-        final Label message = new Label("Insufficient funds!", skin);
+        final Label message = new Label("Insufficient clicks!", skin);
         final TextButton dismissBtn = new TextButton("Dismiss", skin);
         dismissBtn.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 dialog.hide();
-//                dialog.cancel();
-//                dialog.remove();
+                dialog.cancel();
+                dialog.remove();
                 return true;
             }
         });

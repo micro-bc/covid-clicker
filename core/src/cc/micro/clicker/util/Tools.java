@@ -34,4 +34,29 @@ public class Tools {
 
         return number.toString();
     }
+
+    @NotNull
+    public static String _prettyTime(@NotNull final BigInteger milliseconds) {
+        final StringBuilder prettyTime = new StringBuilder();
+
+        final long day = 1000 * 60 * 60 * 24;
+        final long hour = 1000 * 60 * 60;
+        final long minute = 1000 * 60;
+        final long second = 1000;
+
+        final long days = milliseconds.longValue() / day;
+        final long daysResidue = milliseconds.longValue() - days * day;
+        final long hours = daysResidue / hour;
+        final long hoursResidue = daysResidue - hours * hour;
+        final long minutes = hoursResidue / minute;
+        final long minutesResidue = hoursResidue - minutes * minute;
+        final long seconds = minutesResidue / second;
+
+        if(days > 0) prettyTime.append(days).append(" days ");
+        if(hours > 0) prettyTime.append(hours).append("h ");
+        if(minutes > 0) prettyTime.append(minutes).append("min ");
+        prettyTime.append(seconds).append("s");
+
+        return prettyTime.toString();
+    }
 }

@@ -27,7 +27,6 @@ public final class ClickerGameConfig {
     /* Sizes */
     public static final float HEIGHT_HUD_ITEM = HEIGHT / 15f;
     public static final float HEIGHT_MENU_ITEM = HEIGHT / 12f;
-    public static final float PAD_MENU_ITEM = WIDTH / 50f;
     public static final float VIRUS_SCALE = 0.8f;
     public static final float SCROLL_PANE_ROW_HEIGHT = HEIGHT / 10f;
 
