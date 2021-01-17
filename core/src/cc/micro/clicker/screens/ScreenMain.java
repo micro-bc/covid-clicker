@@ -46,15 +46,15 @@ public class ScreenMain extends AbstractScreen {
     @Override
     protected void setUp() {
         final TextureAtlas textureAtlas = game.getAssetManager().get(AssetDescriptors.MY_ATLAS);
-        final TextureAtlas.AtlasRegion books = textureAtlas.findRegion(RegionNames.KNJIGE1);
         final TextureAtlas.AtlasRegion virus = textureAtlas.findRegion(RegionNames.ZELENI_VIRUS1);
-        final TextureAtlas.AtlasRegion plus = textureAtlas.findRegion(RegionNames.KNJIGE2);
-        final TextureAtlas.AtlasRegion settings = textureAtlas.findRegion(RegionNames.MIKROSKOP);
+        final TextureAtlas.AtlasRegion list = textureAtlas.findRegion(RegionNames.LIST_2);
+        final TextureAtlas.AtlasRegion plus = textureAtlas.findRegion(RegionNames.PLUS_2);
+        final TextureAtlas.AtlasRegion settings = textureAtlas.findRegion(RegionNames.SETTINGS_ICON_1);
 
         clicksLabel = new Label("", skin);
         cpsLabel = new Label("", skin);
         clickerButton = new ImageButton(new SpriteDrawable(new Sprite(virus)));
-        itemsButton = new ImageButton(new SpriteDrawable(new Sprite(books)));
+        itemsButton = new ImageButton(new SpriteDrawable(new Sprite(list)));
         shopButton = new ImageButton(new SpriteDrawable(new Sprite(plus)));
         settingsButton = new ImageButton(new SpriteDrawable(new Sprite(settings)));
         itemsLabel = new Label("Items", skin);
