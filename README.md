@@ -11,13 +11,13 @@
 * [x] Not enough funds popup
 * [x] Settings / About screen: general stats (total clicks, time spent)
 * [x] Add icon labels (Item List, Shop, Info/Settings)
-* [ ] Create prettyNames Map (RegionName -> prettyName)
-
+* [x] Create prettyNames Map (RegionName -> prettyName)
 * [x] Add icons: settings/about, plus/store, list/(existing books)
-* [ ] Play sounds (buy item, manual click, new max)
 
+* [ ] Play sounds (buy item, manual click, new max)
 * [ ] Animations and particles (optional)
-* [ ] Buy button greyed out if insufficient funds (optional)
-* [ ] Consistent naming (si -> en) (optional)
+
+* [ ] ~~Buy button greyed out if insufficient funds (optional)~~
+* [ ] ~~Consistent naming (si -> en) (optional)~~
 
 * [ ] Presentation (w/ Trailer clip)

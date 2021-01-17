@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,6 +19,7 @@ import cc.micro.clicker.screens.ScreenMain;
 import cc.micro.clicker.screens.ScreenManager;
 import cc.micro.clicker.screens.ScreenSettings;
 import cc.micro.clicker.screens.ScreenShop;
+import cc.micro.clicker.util.AutoClicker;
 
 public class ClickerGame extends Game {
     @NotNull
@@ -43,6 +45,8 @@ public class ClickerGame extends Game {
         ScreenManager.game = this;
 
         loadAssets();
+        initClickers();
+        ClickerGameManager.INSTANCE = new ClickerGameManager();
         initScreens();
 
         setScreen(ScreenManager.screens.get(ScreenManager.MAIN_SCREEN));
@@ -73,6 +77,13 @@ public class ClickerGame extends Game {
         ScreenManager.screens.put(ScreenManager.ITEMS_SCREEN, new ScreenItems());
         ScreenManager.screens.put(ScreenManager.SHOP_SCREEN, new ScreenShop());
         ScreenManager.screens.put(ScreenManager.SETTINGS_SCREEN, new ScreenSettings());
+    }
+
+    private void initClickers() {
+        final TextureAtlas textureAtlas = assetManager.get(AssetDescriptors.MY_ATLAS);
+        for (final String region : AutoClicker.AUTO_CLICKERS.keySet()) {
+            AutoClicker.AUTO_CLICKERS.get(region).setTextureRegion(textureAtlas);
+        }
     }
 
     @Override

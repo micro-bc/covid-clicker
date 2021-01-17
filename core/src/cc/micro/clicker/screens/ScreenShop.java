@@ -39,10 +39,9 @@ public class ScreenShop extends AbstractScreen {
         setPaneStyle();
 
         final TextureAtlas textureAtlas = game.getAssetManager().get(AssetDescriptors.MY_ATLAS);
-        for (final String regionName : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
-            final AutoClicker autoClicker = ClickerGameConfig.AUTO_CLICKERS.get(regionName);
+        for (final String regionName : AutoClicker.AUTO_CLICKERS.keySet()) {
+            final AutoClicker autoClicker = AutoClicker.AUTO_CLICKERS.get(regionName);
             final TextureAtlas.AtlasRegion books = textureAtlas.findRegion(RegionNames.KNJIGE1);
-            autoClicker.setTextureRegion(textureAtlas.findRegion(regionName));
             table.row().height(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT);
 
             final Image icon = new Image(new SpriteDrawable(new Sprite(autoClicker.getAtlasRegion())));
@@ -62,13 +61,13 @@ public class ScreenShop extends AbstractScreen {
                     .expandX();
             table.add(oneBtn)
                     .right()
-                    .width(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.7f)
-                    .height(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.7f)
+                    .width(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.6f)
+                    .height(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.6f)
                     .pad(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.1f);
             table.add(tenBtn)
                     .right()
-                    .width(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.7f)
-                    .height(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.7f)
+                    .width(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.6f)
+                    .height(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.6f)
                     .pad(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT * 0.1f);
 
             oneBtn.addListener(new InputListener() {

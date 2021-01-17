@@ -46,7 +46,7 @@ public class ScreenMain extends AbstractScreen {
     @Override
     protected void setUp() {
         final TextureAtlas textureAtlas = game.getAssetManager().get(AssetDescriptors.MY_ATLAS);
-        final TextureAtlas.AtlasRegion virus = textureAtlas.findRegion(RegionNames.ZELENI_VIRUS1);
+        final TextureAtlas.AtlasRegion virus = textureAtlas.findRegion(RegionNames.VIJOLICNI_VIRUS1);
         final TextureAtlas.AtlasRegion list = textureAtlas.findRegion(RegionNames.LIST_2);
         final TextureAtlas.AtlasRegion plus = textureAtlas.findRegion(RegionNames.PLUS_2);
         final TextureAtlas.AtlasRegion settings = textureAtlas.findRegion(RegionNames.SETTINGS_ICON_1);

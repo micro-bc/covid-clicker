@@ -41,7 +41,7 @@ public abstract class AbstractScreen extends ScreenAdapter {
     @NotNull
     protected final Skin skin;
 
-    protected boolean setDefaultBackground = true;
+    protected final boolean setDefaultBackground = true;
 
     public AbstractScreen() {
         this.skin = game.getAssetManager().get(AssetDescriptors.SKIN);
@@ -59,11 +59,12 @@ public abstract class AbstractScreen extends ScreenAdapter {
 
         container.setSkin(skin);
         container.setFillParent(true);
+        //noinspection ConstantConditions
         container.setDebug(ClickerGameConfig.DEBUG != Logger.NONE);
 
         setUp();
         setGenericListeners();
-        if(setDefaultBackground) drawBackground();
+        if (setDefaultBackground) drawBackground();
         stage.addActor(container);
     }
 
@@ -71,15 +72,13 @@ public abstract class AbstractScreen extends ScreenAdapter {
         stage.addListener(new InputListener() {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
-                switch (keycode) {
-                    case Input.Keys.BACK:
-                        if (ScreenManager.screenStack.size() < 2) return true;
-                        ScreenManager.screenStack.pop();
-                        game.setScreen(ScreenManager.screenStack.pop());
-                        return true;
-                    default:
-                        return false;
+                if (keycode == Input.Keys.BACK) {
+                    if (ScreenManager.screenStack.size() < 2) return true;
+                    ScreenManager.screenStack.pop();
+                    game.setScreen(ScreenManager.screenStack.pop());
+                    return true;
                 }
+                return false;
             }
         });
     }

@@ -3,13 +3,6 @@ package cc.micro.clicker;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Logger;
 
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
-
-import cc.micro.clicker.assets.RegionNames;
-import cc.micro.clicker.util.AutoClicker;
-
 public final class ClickerGameConfig {
     public static final int DEBUG = Logger.DEBUG;
 
@@ -29,12 +22,4 @@ public final class ClickerGameConfig {
     public static final float HEIGHT_MENU_ITEM = HEIGHT / 12f;
     public static final float VIRUS_SCALE = 0.8f;
     public static final float SCROLL_PANE_ROW_HEIGHT = HEIGHT / 10f;
-
-    /* AutoClickers */
-    public static final Map<String, AutoClicker> AUTO_CLICKERS = new HashMap<String, AutoClicker>() {
-        {
-            put(RegionNames.ADVANCED_POSTELJA, new AutoClicker(BigInteger.valueOf(50), BigInteger.valueOf(1)));
-            put(RegionNames.BUCKA, new AutoClicker(BigInteger.valueOf(150), BigInteger.valueOf(3)));
-        }
-    };
 }

@@ -18,7 +18,6 @@ import java.math.BigInteger;
 import cc.micro.clicker.ClickerGameConfig;
 import cc.micro.clicker.ClickerGameManager;
 import cc.micro.clicker.assets.AssetDescriptors;
-import cc.micro.clicker.assets.RegionNames;
 import cc.micro.clicker.util.AutoClicker;
 
 import static cc.micro.clicker.screens.ScreenManager.game;
@@ -38,14 +37,12 @@ public class ScreenItems extends AbstractScreen {
         setPaneStyle();
 
         final TextureAtlas textureAtlas = game.getAssetManager().get(AssetDescriptors.MY_ATLAS);
-        for (final String regionName : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
-            final AutoClicker autoClicker = ClickerGameConfig.AUTO_CLICKERS.get(regionName);
-            final TextureAtlas.AtlasRegion books = textureAtlas.findRegion(RegionNames.KNJIGE1);
-            autoClicker.setTextureRegion(textureAtlas.findRegion(regionName));
+        for (final String regionName : AutoClicker.AUTO_CLICKERS.keySet()) {
+            final AutoClicker autoClicker = AutoClicker.AUTO_CLICKERS.get(regionName);
             table.row().height(ClickerGameConfig.SCROLL_PANE_ROW_HEIGHT);
 
             final Image icon = new Image(new SpriteDrawable(new Sprite(autoClicker.getAtlasRegion())));
-            final Label name = new Label(regionName, skin);
+            final Label name = new Label(autoClicker.getName(), skin);
             final Label count = new Label("", skin);
             final Label totalCps = new Label("", skin);
             table.add(icon)
@@ -87,28 +84,22 @@ public class ScreenItems extends AbstractScreen {
     @Override
     protected void update(float dt) {
         final Table table = (Table) itemsPane.getActor();
+        final Object[] keys = AutoClicker.AUTO_CLICKERS.keySet().toArray();
 
-        /* Could be cleaner */
-        String itemID = null;
+        AutoClicker autoClicker = null;
         int count = 0;
         for (int i = 0; i < table.getCells().size; i++) {
             final Cell<?> cell = table.getCells().get(i);
             switch (i % 4) {
                 case 0: // ICON
-                    break;
+                    autoClicker = AutoClicker.AUTO_CLICKERS.get(keys[i / 4]);
                 case 1: // TITLE
-                    itemID = ((Label) cell.getActor()).getText().toString();
                     break;
                 case 2: // COUNT
-                    if(itemID == null) {
-                        count = 0;
-                    } else {
-                        count = ClickerGameManager.INSTANCE.getItemCount(itemID);
-                    }
+                    count = ClickerGameManager.INSTANCE.getItemCount(autoClicker.getRegion());
                     ((Label) cell.getActor()).setText(count);
                     break;
                 case 3: // TOTAL_CPS
-                    final AutoClicker autoClicker = ClickerGameConfig.AUTO_CLICKERS.get(itemID);
                     ((Label) cell.getActor()).setText(_bi2shortStr(BigInteger.valueOf(count).multiply(autoClicker.getCps())) + "cps");
                     break;
             }

@@ -4,27 +4,28 @@ import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Tools {
     public static String _bi2shortStr(@NotNull final BigInteger number) {
-        if(number.compareTo(BigInteger.valueOf(1_000_000L)) < 0) {
+        if (number.compareTo(BigInteger.valueOf(999)) < 0) {
             return number.toString();
         }
 
-        final Map<Long, String> suffixMap = new HashMap<Long, String>() {
+        final Map<Long, String> suffixMap = new LinkedHashMap<Long, String>() {
             {
                 put(1_000_000_000_000_000_000L, "E");
                 put(1_000_000_000_000_000L, "P");
                 put(1_000_000_000_000L, "T");
                 put(1_000_000_000L, "G");
                 put(1_000_000L, "M");
+                put(1_000L, "k");
             }
         };
 
         for (final Long value : suffixMap.keySet()) {
-            if(number.compareTo(BigInteger.valueOf(value)) > 0) {
+            if (number.compareTo(BigInteger.valueOf(value)) > 0) {
                 final DecimalFormat df = new DecimalFormat("#.###");
                 return df.format(number.doubleValue() / value.doubleValue())
                         + " "
@@ -52,9 +53,9 @@ public class Tools {
         final long minutesResidue = hoursResidue - minutes * minute;
         final long seconds = minutesResidue / second;
 
-        if(days > 0) prettyTime.append(days).append(" days ");
-        if(hours > 0) prettyTime.append(hours).append("h ");
-        if(minutes > 0) prettyTime.append(minutes).append("min ");
+        if (days > 0) prettyTime.append(days).append(" days ");
+        if (hours > 0) prettyTime.append(hours).append("h ");
+        if (minutes > 0) prettyTime.append(minutes).append("min ");
         prettyTime.append(seconds).append("s");
 
         return prettyTime.toString();

@@ -14,7 +14,7 @@ import java.util.UUID;
 import cc.micro.clicker.util.AutoClicker;
 
 public class ClickerGameManager {
-    public static final ClickerGameManager INSTANCE = new ClickerGameManager();
+    public static ClickerGameManager INSTANCE;
     private static final String CPS_ID = "CPS";
     private static final String CLICKS_ID = "CLICKS";
     private static final String USER_ID = "USER_ID";
@@ -30,8 +30,7 @@ public class ClickerGameManager {
     private BigInteger totalTime = BigInteger.valueOf(0); // milliseconds
     private long instanceStartTime = TimeUtils.millis();
 
-
-    private ClickerGameManager() {
+    public ClickerGameManager() {
         loadState();
     }
 
@@ -70,7 +69,7 @@ public class ClickerGameManager {
     }
 
     public boolean buyItem(@NotNull final String itemId, final int count) {
-        final AutoClicker item = ClickerGameConfig.AUTO_CLICKERS.get(itemId);
+        final AutoClicker item = AutoClicker.AUTO_CLICKERS.get(itemId);
         final BigInteger price = item.getPrice();
 
         if (this.clicks.compareTo(price.multiply(BigInteger.valueOf(count))) < 0 || (this.items.get(itemId) == null)) {
@@ -84,14 +83,16 @@ public class ClickerGameManager {
     }
 
     public void reset() {
+        PREFERENCES.clear();
         userID = UUID.randomUUID();
         cps = BigInteger.valueOf(0);
         clicks = BigInteger.valueOf(0);
         totalClicks = BigInteger.valueOf(0);
         totalTime = BigInteger.valueOf(0);
-        for (final String key : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
+        for (final String key : AutoClicker.AUTO_CLICKERS.keySet()) {
             items.put(key, 0);
         }
+        saveState();
     }
 
     public void update(final float dt) {
@@ -126,7 +127,7 @@ public class ClickerGameManager {
             clicks = new BigInteger(PREFERENCES.getString(CLICKS_ID));
             totalClicks = new BigInteger(PREFERENCES.getString(TOTAL_CLICKS_ID));
             totalTime = new BigInteger(PREFERENCES.getString(TOTAL_TIME_ID));
-            for (final String clicker : ClickerGameConfig.AUTO_CLICKERS.keySet()) {
+            for (final String clicker : AutoClicker.AUTO_CLICKERS.keySet()) {
                 if (PREFERENCES.contains(clicker)) {
                     items.put(clicker, Integer.valueOf(PREFERENCES.getString(clicker)));
                 } else {
