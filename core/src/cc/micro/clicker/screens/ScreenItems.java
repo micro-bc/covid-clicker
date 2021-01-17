@@ -100,7 +100,11 @@ public class ScreenItems extends AbstractScreen {
                     itemID = ((Label) cell.getActor()).getText().toString();
                     break;
                 case 2: // COUNT
-                    count = ClickerGameManager.INSTANCE.getItemCount(itemID);
+                    if(itemID == null) {
+                        count = 0;
+                    } else {
+                        count = ClickerGameManager.INSTANCE.getItemCount(itemID);
+                    }
                     ((Label) cell.getActor()).setText(count);
                     break;
                 case 3: // TOTAL_CPS

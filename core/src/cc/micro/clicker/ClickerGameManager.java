@@ -45,10 +45,19 @@ public class ClickerGameManager {
         return clicks;
     }
 
+    @NotNull
+    public BigInteger getTotalClicks() {
+        return totalClicks;
+    }
+
+    @NotNull
+    public BigInteger getTotalTime() {
+        return totalTime;
+    }
+
     public int getItemCount(@NotNull final String id) {
         return items.get(id);
     }
-
 
     public void updateTotalTime() {
         totalTime = totalTime.add(BigInteger.valueOf(TimeUtils.timeSinceMillis(instanceStartTime)));
@@ -74,7 +83,7 @@ public class ClickerGameManager {
         return false;
     }
 
-    private void reset() {
+    public void reset() {
         userID = UUID.randomUUID();
         cps = BigInteger.valueOf(0);
         clicks = BigInteger.valueOf(0);
