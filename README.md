@@ -13,7 +13,7 @@
 * [ ] Add icon labels (Item List, Shop, Info/Settings)
 * [ ] Create prettyNames Map (RegionName -> prettyName)
 
-* [ ] Add icons: settings/about, plus/store, list/(existing books) 
+* [x] Add icons: settings/about, plus/store, list/(existing books)
 * [ ] Play sounds (buy item, manual click, new max)
 
 * [ ] Animations and particles (optional)

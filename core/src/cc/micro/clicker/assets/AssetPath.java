@@ -1,9 +1,6 @@
 package cc.micro.clicker.assets;
 
 public class AssetPath {
-    /* TODO:
-        - Add +, settings icons
-     */
     public static final String MY_ATLAS = "atlas/myatlas/myatlas.atlas";
 
     public static final String SKIN = "skins/default/skin/uiskin.json";
