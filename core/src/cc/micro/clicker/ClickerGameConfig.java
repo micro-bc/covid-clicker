@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Logger;
 
 public final class ClickerGameConfig {
-    public static final int DEBUG = Logger.DEBUG;
+    public static final int DEBUG = Logger.NONE;
 
     /* Style */
     public static final String CURRENCY_SYMBOL = "c"; // ₡ font has to support it

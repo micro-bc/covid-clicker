@@ -14,12 +14,12 @@ import java.util.UUID;
 import cc.micro.clicker.util.AutoClicker;
 
 public class ClickerGameManager {
-    public static ClickerGameManager INSTANCE;
     private static final String CPS_ID = "CPS";
     private static final String CLICKS_ID = "CLICKS";
     private static final String USER_ID = "USER_ID";
     private static final String TOTAL_TIME_ID = "TOTAL_TIME";
     private static final String TOTAL_CLICKS_ID = "TOTAL_CLICKS";
+    public static ClickerGameManager INSTANCE;
     private final Preferences PREFERENCES = Gdx.app.getPreferences(ClickerGame.class.getSimpleName());
     private final Map<String, Integer> items = new HashMap<>();
     private UUID userID;

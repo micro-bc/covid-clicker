@@ -13,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Field;
 
 import cc.micro.clicker.assets.AssetDescriptors;
-import cc.micro.clicker.debug.ViewportUtils;
 import cc.micro.clicker.screens.ScreenItems;
 import cc.micro.clicker.screens.ScreenMain;
 import cc.micro.clicker.screens.ScreenManager;
@@ -41,7 +40,6 @@ public class ClickerGame extends Game {
     public void create() {
         this.batch = new SpriteBatch();
         Gdx.app.setLogLevel(ClickerGameConfig.DEBUG);
-        ViewportUtils.DEFAULT_CELL_SIZE = 32;
         ScreenManager.game = this;
 
         loadAssets();

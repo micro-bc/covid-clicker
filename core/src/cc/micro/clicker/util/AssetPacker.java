@@ -18,6 +18,6 @@ public class AssetPacker {
                 ASSETS_PATH + "/" + NAME,
                 NAME
         );
-        String file=ASSETS_PATH + NAME +"/"+ NAME +".atlas";
+        String file = ASSETS_PATH + NAME + "/" + NAME + ".atlas";
     }
 }

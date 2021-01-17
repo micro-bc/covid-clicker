@@ -92,7 +92,8 @@ public class ScreenItems extends AbstractScreen {
             final Cell<?> cell = table.getCells().get(i);
             switch (i % 4) {
                 case 0: // ICON
-                    autoClicker = AutoClicker.AUTO_CLICKERS.get(keys[i / 4]);
+                    final String key = (String) keys[i / 4];
+                    autoClicker = AutoClicker.AUTO_CLICKERS.get(key);
                 case 1: // TITLE
                     break;
                 case 2: // COUNT

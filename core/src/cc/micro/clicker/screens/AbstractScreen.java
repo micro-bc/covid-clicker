@@ -59,7 +59,6 @@ public abstract class AbstractScreen extends ScreenAdapter {
 
         container.setSkin(skin);
         container.setFillParent(true);
-        //noinspection ConstantConditions
         container.setDebug(ClickerGameConfig.DEBUG != Logger.NONE);
 
         setUp();
