@@ -10,7 +10,7 @@
 * [x] Read/Write game state (clicks, cps, items, stats)
 * [x] Not enough funds popup
 * [x] Settings / About screen: general stats (total clicks, time spent)
-* [ ] Add icon labels (Item List, Shop, Info/Settings)
+* [x] Add icon labels (Item List, Shop, Info/Settings)
 * [ ] Create prettyNames Map (RegionName -> prettyName)
 
 * [ ] Add icons: settings/about, plus/store, list/(existing books) 
