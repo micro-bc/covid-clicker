@@ -71,13 +71,16 @@ public abstract class AbstractScreen extends ScreenAdapter {
         stage.addListener(new InputListener() {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
-                if (keycode == Input.Keys.BACK) {
-                    if (ScreenManager.screenStack.size() < 2) return true;
-                    ScreenManager.screenStack.pop();
-                    game.setScreen(ScreenManager.screenStack.pop());
-                    return true;
+                switch (keycode) {
+                    case Input.Keys.BACK:
+                    case Input.Keys.BACKSLASH:
+                        if (ScreenManager.screenStack.size() < 2) return true;
+                        ScreenManager.screenStack.pop();
+                        game.setScreen(ScreenManager.screenStack.pop());
+                        return true;
+                    default:
+                        return false;
                 }
-                return false;
             }
         });
     }

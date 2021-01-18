@@ -1,14 +1,22 @@
 package cc.micro.clicker.screens;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Queue;
+import java.util.Random;
 
 import cc.micro.clicker.ClickerGameConfig;
 import cc.micro.clicker.ClickerGameManager;
@@ -46,14 +54,13 @@ public class ScreenMain extends AbstractScreen {
     @Override
     protected void setUp() {
         final TextureAtlas textureAtlas = game.getAssetManager().get(AssetDescriptors.MY_ATLAS);
-        final TextureAtlas.AtlasRegion virus = textureAtlas.findRegion(RegionNames.VIJOLICNI_VIRUS1);
         final TextureAtlas.AtlasRegion list = textureAtlas.findRegion(RegionNames.LIST_2);
         final TextureAtlas.AtlasRegion plus = textureAtlas.findRegion(RegionNames.PLUS_2);
         final TextureAtlas.AtlasRegion settings = textureAtlas.findRegion(RegionNames.SETTINGS_ICON_1);
 
         clicksLabel = new Label("", skin);
         cpsLabel = new Label("", skin);
-        clickerButton = new ImageButton(new SpriteDrawable(new Sprite(virus)));
+        clickerButton = new ImageButton(new SpriteDrawable(new Sprite(textureAtlas.findRegion(RegionNames.VIJOLICNI_VIRUS1))));
         itemsButton = new ImageButton(new SpriteDrawable(new Sprite(list)));
         shopButton = new ImageButton(new SpriteDrawable(new Sprite(plus)));
         settingsButton = new ImageButton(new SpriteDrawable(new Sprite(settings)));
@@ -114,6 +121,9 @@ public class ScreenMain extends AbstractScreen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 ClickerGameManager.INSTANCE.click(BigInteger.valueOf(1));
+                final Image image = clickerButton.getImage();
+                image.setOrigin(image.getWidth() / 2f, image.getHeight() / 2f);
+                image.rotateBy(90f);
                 return true;
             }
         });
