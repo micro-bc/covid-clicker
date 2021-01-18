@@ -1,5 +1,7 @@
 ***Covid-clicker*** is a corona-themed idle clicker game for android based on LibGDX.
 
+### [Predstavitev](https://docs.google.com/presentation/d/1hW9Upxf4II_DvXJMZYJ_hl8anfyjyNgI8Nr2Rr5KXy8/edit?usp=sharing)
+
 ### Viri
 * [PngTree](https://pngtree.com/)
 * [SoundSnap](www.soundsnap.com)
