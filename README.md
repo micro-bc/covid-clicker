@@ -22,4 +22,4 @@
 * [ ] ~~Buy button greyed out if insufficient funds (optional)~~
 * [ ] ~~Consistent naming (si -> en) (optional)~~
 
-* [ ] Presentation (w/ Trailer clip)
+* [x] Presentation (w/ Trailer clip)
